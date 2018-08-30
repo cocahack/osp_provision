@@ -1,0 +1,17 @@
+---
+# tasks file for osp-keypair
+  - name: Delete keypair in OSP
+    os_keypair:
+      cloud: ospcloud
+      state: absent
+      name: ansible_ssh
+#      public_key_file: "{{ ansible_env.HOME }}/.ssh/{{ OSP_KEY_FILE_NAME }}.pub"
+
+    
+  - name: Remove key files
+    file:
+      state: absent 
+      path: "{{ item }}"
+    with_items:
+      - "{{ OSP_KEY_FILE_NAME }}"
+      - "{{ OSP_KEY_FILE_NAME }}.pub"

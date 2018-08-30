@@ -1,0 +1,10 @@
+---
+# tasks file for osp-securitygroup
+  - os_security_group:
+      cloud: ospcloud
+      state: absent
+      name: "{{ item }}"
+    with_items:
+      - app_servers
+      - frontend_servers
+      - db_servers

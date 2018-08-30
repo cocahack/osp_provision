@@ -1,0 +1,32 @@
+---
+  - name: Remove clouds.yaml file
+    file:
+     path: /etc/openstack/clouds.yaml
+     state: absent
+
+  - name: Revmove openstack directory
+    file: 
+      path: /etc/openstack 
+      state: absent
+
+  - name: Remove shade library for intercating with Openstack clouds
+    pip:
+     name: shade   
+     state: absent    
+
+  - name: Remove python ansible python dependencies
+    yum:
+     name: "{{ item }}"
+     state: absent
+    with_items:
+     - python
+     - python-devel
+     - python-pip
+     - gcc
+     - ansible
+
+  - name: Remove epel rpm from remote repo
+    yum:
+     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+     state: absent     
+

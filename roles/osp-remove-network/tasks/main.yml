@@ -1,0 +1,12 @@
+  - os_router:
+      cloud: ospcloud
+      state: absent
+      name: router1
+
+  - os_network:
+      cloud: ospcloud
+      state: absent
+      name: "{{ item }}"
+    with_items:
+      - ext_network
+      - int_network

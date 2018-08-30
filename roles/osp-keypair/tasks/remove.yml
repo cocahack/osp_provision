@@ -1,0 +1,9 @@
+---
+# tasks file for osp-keypair
+  - name: Generate key files
+    file:
+      state: absent 
+      path: "{{ item }}"
+    with_items:
+      - "{{ OSP_KEY_FILE_NAME }}"
+      - "{{ OSP_KEY_FILE_NAME }}.pub"

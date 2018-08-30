@@ -1,0 +1,11 @@
+- hosts: jumpbox
+  tasks:
+  - name: Remove all instance
+    include_role:
+       name: osp-remove-instances
+       vars_from: "{{ item }}"
+    loop:
+      - frontend.yaml
+      - app1.yaml
+      - app2.yaml
+      - db.yaml

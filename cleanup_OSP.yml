@@ -1,0 +1,34 @@
+---
+- hosts: jumpbox
+  tasks:
+  - name: Remove a flavor
+    include_role:
+      name: osp-remove-flavor
+
+  - name: Remove Security Groups
+    include_role:
+      name: osp-remove-securitygroup
+
+  - name: Remove key pair
+    include_role:
+      name: osp-remove-keypair
+
+  - name: Remove all networks
+    include_role:
+      name: osp-remove-network
+
+  - name: Remove a RHEL template
+    os_image:
+      cloud: ospcloud
+      name: rhel-guest
+      container_format: bare
+      disk_format: qcow2
+      state: absent
+      filename: /tmp/rhel.qcow2
+    tags:
+      - tested
+
+  - name: Remove RHEL image
+    file:
+      path: /tmp/rhel.qcow2
+      state: absent
