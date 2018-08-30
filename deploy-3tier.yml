@@ -8,7 +8,6 @@
 
 - name: setup load-balancer tier
   hosts: frontends
-  gather_facts: false
   remote_user: cloud-user
   become: yes
   roles:
