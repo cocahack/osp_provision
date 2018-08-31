@@ -1,0 +1,14 @@
+---
+- hosts: jumpbox
+  gather_facts: true
+  roles:
+  - name: osp-facts
+
+- hosts: frontends
+  gather_facts: false
+  tasks:
+  - name: Curl Webside
+    uri:
+     url: "http://{{ item }}"
+    with_items:
+      - "{{ inventory_hostname }}"
