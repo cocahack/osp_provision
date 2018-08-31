@@ -3,8 +3,19 @@
 #
 #   Remove all repos
 #   Remove the base 3 tier app packages (haproxy, tomcat etc)
+- hosts: jumpbox
+  gather_facts: yes
+  roles:
+  - name: osp-facts
 
-- name: cleaner - delete the the tier app specfic additions
-  hosts: all
+- hosts: frontends
+  roles:
+    - cleaner
+
+- hosts: apps
+  roles:
+    - cleaner
+
+- hosts: appdbs
   roles:
     - cleaner
