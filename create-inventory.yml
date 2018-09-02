@@ -1,0 +1,6 @@
+- name: Add Tower inventory
+  tower_inventory:
+    name: "AWS 3tier inventory"
+    state: present
+    organization: "Default"
+    tower_config_file: "/tmp/tower_cli.cfg" 
